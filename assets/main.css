@@ -1,8 +1,9 @@
 *, *:after, *:before {
-	box-sizing: border-box
+	box-sizing: border-box;
 }
+
 .cf:after {
-    content: ,
-    clear: both,
-    display: table
+    clear: both;
+    content: '';
+    display: table;
 }
