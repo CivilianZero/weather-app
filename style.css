@@ -1,0 +1,40 @@
+html {
+	font-size: 2vw;
+}
+
+body {
+	background-color: #555;
+}
+
+.container {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+}
+
+.report {
+	display: flex;
+	justify-content: space-around;
+	margin: .5em 2em;
+}
+
+.left,
+.right {
+	background-color: #ddd;
+	padding: 1em;
+	flex-grow: 1;
+}
+
+.left {
+	margin-right: 1em;
+	text-align: center;
+}
+
+.right {
+	flex-grow: 3;
+}
+
+.hidden {
+	display: none;
+}
+
