@@ -1,9 +1,0 @@
-*, *:after, *:before {
-	box-sizing: border-box;
-}
-
-.cf:after {
-    clear: both;
-    content: '';
-    display: table;
-}
