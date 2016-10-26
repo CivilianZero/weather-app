@@ -1,10 +1,8 @@
-var dataArray;
 // http request function
 $.ajax({
     url: 'http://api.openweathermap.org/data/2.5/forecast/daily?lat=7.899&lon=98.4&cnt=10&mode=json&appid=464dd702fe9c8db2e541721da7d8822a',
     success: function (results) {
-        dataArray = results;
-        var overview = new Overview('main', dataArray);
+        var overview = new Overview('main', results);
         overview.render();
     }
 });
