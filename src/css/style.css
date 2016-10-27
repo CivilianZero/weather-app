@@ -1,37 +1,139 @@
+@font-face {
+	font-family: 'Raleway';
+	src: url(./fonts/Raleway/Raleway-Thin.ttf);
+}
+
 html {
 	font-size: 2vw;
 }
 
 body {
 	background-color: #555;
+	font-family: 'Raleway';
+
+}
+
+header {
+	text-align: center;
+	color: #fff;
+
+}
+
+header > h1 {
+	font-size: 5em;
+	margin: .5em 0 0 0;
+	letter-spacing: .25em;
+}
+
+header > h2 {
+	font-size: 2.75em;
+	margin: 0;
+}
+
+img {
+	width: 6em;
+	height: 6em;
+	align-self: center;
+	padding: .5em;
 }
 
 .container {
 	display: flex;
 	flex-direction: column;
-	justify-content: space-around;
+	align-content: space-around;
+	margin: .5em 2em;
 }
 
 .report {
 	display: flex;
+	flex-grow: 1;
 	justify-content: space-around;
-	margin: .5em 2em;
+	margin: .5em 1.5em .5em 1.5em;
+	opacity: .8;
+}
+
+.report:hover {
+	opacity: 1;
+	margin: .5em 1em;
+}
+
+.report.selected {
+	margin: .5em;
+	opacity: 1;
+}
+
+.selected img {
+	width: 8em;
+	height: 8em;
+}
+
+.report h2 {
+	font-size: 2.5em;
+	margin: 0;
+	padding: .2em;
+	vertical-align: middle;
+}
+
+.report h3 {
+	font-size: 2.25em;
+}
+
+.right h3 {
+	letter-spacing: .25em;
+	text-align: center;
+}
+
+.report h4 {
+	font-size: 2em;
+	letter-spacing: .15em;
+	margin: 0;
+}
+
+.date > h2:last-of-type {
+	font-size: 4em;
+	padding-top: 0; 
 }
 
 .left,
 .right {
-	background-color: #ddd;
-	padding: 1em;
-	flex-grow: 1;
+	background-color: #fff;
+	padding: .5em;
 }
 
 .left {
-	margin-right: 1em;
+	display: flex;
+	flex-direction: column;
 	text-align: center;
+	flex-basis: 20%;
+	margin-right: .5em;  
 }
 
 .right {
-	flex-grow: 3;
+	display: flex;
+	justify-content: space-around;
+	flex-grow: 4;
+	margin-left: .5em;
+}
+
+.day {
+	align-self: center;
+	flex-grow: 1;
+	padding-left: 0;
+	font-size: 2em
+}
+
+.data {
+	align-self: center;
+	flex-grow: 1;
+	line-height: 3em;	
+}
+
+.conditions-large {
+	display: flex;
+	flex-grow: 1;
+	justify-content: space-around;
+	align-self: center;
+	padding: 1em;
 }
 
 .hidden {
