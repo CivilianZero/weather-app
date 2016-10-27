@@ -56,19 +56,13 @@ Overview.prototype.render = function () {
 
 Overview.prototype.bindEvents = function () {
     $('.report').click(function() {
-        $('.conditions-small, .day, .data').addClass('hidden');
-        $('.conditions-large, .date').removeClass('hidden');
-        $('.report').removeClass('selected');
         $(this).toggleClass('selected');
-        $(this).find('.date, .conditions-large, .conditions-small, .data, .day').toggleClass('hidden');
+        // $('.conditions-small, .day, .data').addClass('hidden');
+        // $('.conditions-large, .date').removeClass('hidden');
+        // $('.report').removeClass('selected');
+        // $(this).toggleClass('selected');
+        // $(this).find('.date, .conditions-large, .conditions-small, .data, .day').toggleClass('hidden');
     });
-    $(window).resize(function () {
-    var width = $(window).width();
-    if (width > 500) {
-            $('.left > *').addClass('hidden');
-            $('.right > *').removeClass('hidden');
-    }
-});
 };
 
 // create ForecastView View
