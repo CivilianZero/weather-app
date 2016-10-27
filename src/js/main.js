@@ -41,8 +41,8 @@ Overview.prototype = Object.create(View.prototype);
 Overview.prototype.render = function () {
     console.log(this);
     
-    var { city: {name} } = this.data;
-    $('h1').text(name);
+    var { city: {name, country} } = this.data;
+    $('h1').text(name, country);
 
     this.data.list.forEach(function (value) {
         var daily = new ForecastView('div', value);
@@ -64,8 +64,9 @@ ForecastView.prototype = Object.create(View.prototype);
 ForecastView.prototype.render = function () {
     var { speed, deg, temp: {min, max} } = this.data,
         { weather: [{main}]} = this.data,
+        { dt } = this.data,
         direction = cardinal(deg),
-        d = new Date(),
+        d = new Date(dt),
         dayN = d.getDay(),
         daysOfWeek = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'],
         currentDay = daysOfWeek[dayN],
