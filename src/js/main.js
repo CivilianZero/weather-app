@@ -62,6 +62,13 @@ Overview.prototype.bindEvents = function () {
         $(this).toggleClass('selected');
         $(this).find('.date, .conditions-large, .conditions-small, .data, .day').toggleClass('hidden');
     });
+    $(window).resize(function () {
+    var width = $(window).width();
+    if (width > 500) {
+            $('.left > *').addClass('hidden');
+            $('.right > *').removeClass('hidden');
+    }
+});
 };
 
 // create ForecastView View
@@ -125,5 +132,3 @@ ForecastView.prototype.render = function () {
     $('main').append(htmlString);
     this.bindEvents();
 };
-
-ForecastView.prototype.bindEvents = function () {};
