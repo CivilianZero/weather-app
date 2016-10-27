@@ -1,0 +1,25 @@
+{
+  "name": "weather-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "jquery": "^3.1.1",
+    "normalize.css": "^5.0.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postinstall": "cp node_modules/jquery/dist/jquery.js lib/ && cp node_modules/normalize.css/normalize.css lib/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CivilianZero/weather-app.git"
+  },
+  "author": "civilianzero",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CivilianZero/weather-app/issues"
+  },
+  "homepage": "https://github.com/CivilianZero/weather-app#readme"
+}
