@@ -56,12 +56,8 @@ Overview.prototype.render = function () {
 
 Overview.prototype.bindEvents = function () {
     $('.report').click(function() {
+        $('.report').removeClass('selected');
         $(this).toggleClass('selected');
-        // $('.conditions-small, .day, .data').addClass('hidden');
-        // $('.conditions-large, .date').removeClass('hidden');
-        // $('.report').removeClass('selected');
-        // $(this).toggleClass('selected');
-        // $(this).find('.date, .conditions-large, .conditions-small, .data, .day').toggleClass('hidden');
     });
 };
 
@@ -70,6 +66,7 @@ function ForecastView () {
     View.apply(this, arguments);
 }
 
+// choose which image to use for weather description
 function insertImage (main) {
     if (main === 'Clear') {
         return 'images/clear.svg';
@@ -80,7 +77,7 @@ function insertImage (main) {
     }
 }
 
-//daily functions and prototype
+// daily functions and prototype
 ForecastView.prototype = Object.create(View.prototype);
 ForecastView.prototype.render = function () {
     var { speed, deg, temp: {min, max} } = this.data,
@@ -124,5 +121,4 @@ ForecastView.prototype.render = function () {
             </div>
         </section>`;
     $('main').append(htmlString);
-    this.bindEvents();
 };
