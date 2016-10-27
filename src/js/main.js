@@ -1,3 +1,5 @@
+var daysOfWeek = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'];
+
 // http request function
 $.ajax({
     url: 'http://api.openweathermap.org/data/2.5/forecast/daily?lat=7.899&lon=98.4&cnt=10&mode=json&appid=464dd702fe9c8db2e541721da7d8822a',
@@ -15,7 +17,7 @@ function convertTemp(temp) {
 // convert degrees to cardinal direction
 function cardinal(deg) {
     var directions = ["N", "NE", "E", "SE", "S", "SW", "W", "NW"];
-    return directions[Math.round((deg / 45) % 8)];
+    return directions[Math.round(deg / 45) % 8];
 }
 
 // View prototype
@@ -39,10 +41,9 @@ function Overview () {
 // overview functions and prototype
 Overview.prototype = Object.create(View.prototype);
 Overview.prototype.render = function () {
-    console.log(this);
-    
-    var { city: {name, country} } = this.data;
-    $('h1').text(name, country);
+    var { city: {name, country} } = this.data,
+        header = name + ', ' + country;
+    $('header > h2').text(header);
 
     this.data.list.forEach(function (value) {
         var daily = new ForecastView('div', value);
@@ -50,13 +51,32 @@ Overview.prototype.render = function () {
         daily.render();
         $('main').append(daily);
     });
+    this.bindEvents();
 };
 
-Overview.prototype.bindEvents = function () {};
+Overview.prototype.bindEvents = function () {
+    $('.report').click(function() {
+        $('.conditions-small, .day, .data').addClass('hidden');
+        $('.conditions-large, .date').removeClass('hidden');
+        $('.report').removeClass('selected');
+        $(this).toggleClass('selected');
+        $(this).find('.date, .conditions-large, .conditions-small, .data, .day').toggleClass('hidden');
+    });
+};
 
 // create ForecastView View
 function ForecastView () {
     View.apply(this, arguments);
+}
+
+function insertImage (main) {
+    if (main === 'Clear') {
+        return 'images/clear.svg';
+    } else if (main === 'Clouds') {
+        return 'images/cloudy.svg';
+    } else {
+        return 'images/rain.svg';
+    }
 }
 
 //daily functions and prototype
@@ -66,42 +86,44 @@ ForecastView.prototype.render = function () {
         { weather: [{main}]} = this.data,
         { dt } = this.data,
         direction = cardinal(deg),
-        d = new Date(dt),
+        d = new Date(dt * 1000),
         dayN = d.getDay(),
-        daysOfWeek = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'],
         currentDay = daysOfWeek[dayN],
-        date = d.getDate();
+        date = d.getDate(),
+        conditions = main;
 
+    main = insertImage(main);
 
     min = convertTemp(min);
     max = convertTemp(max);
-    var htmlString = `<div class="report">
+    var htmlString = `<section class="report">
             <div class="left">
                 <div class="date">  
                     <h2>${currentDay}</h2>
                     <h2>${date}</h2>
                 </div>
-                <div class="conditions-small">
-                    <img class="" src="">
-                    <h4 class="">COND</h4>
+                <div class="conditions-small hidden">
+                    <img src="${main}">
+                    <h4>${conditions}</h4>
                 </div>
             </div>
             <div class="right">
                 <div class="conditions-large">
-                    <img src="">
-                    <h3>CONDITIONS</h3>
+                    <img src="${main}">
+                    <h3>${conditions}</h3>
                 </div>
-                <div class="day">
-                    <h2>DAY</h2>
+                <div class="day hidden">
+                    <h2>${currentDay}</h2>
                 </div>
-                <div class="data">
-                    <h4 class="wind">WIND: ${speed} ${direction}</h4>
-                    <h4 class="hi">HI: ${max}</h4>
-                    <h4 class="lo">LO: ${min}</h4>
+                <div class="data hidden">
+                    <h4>WIND: ${speed} ${direction}</h4>
+                    <h4>HI: ${max}</h4>
+                    <h4>LO: ${min}</h4>
                 </div>  
             </div>
-        </div>`;
+        </section>`;
     $('main').append(htmlString);
+    this.bindEvents();
 };
 
 ForecastView.prototype.bindEvents = function () {};
