@@ -17,7 +17,7 @@ function convertTemp(temp) {
 // convert degrees to cardinal direction
 function cardinal(deg) {
     var directions = ["N", "NE", "E", "SE", "S", "SW", "W", "NW"];
-    return directions[Math.round((deg / 45) % 8)];
+    return directions[Math.round(deg / 45) % 8];
 }
 
 // View prototype
@@ -55,15 +55,28 @@ Overview.prototype.render = function () {
 };
 
 Overview.prototype.bindEvents = function () {
-    $('.report').click(function(e) {
+    $('.report').click(function() {
+        $('.conditions-small, .day, .data').addClass('hidden');
+        $('.conditions-large, .date').removeClass('hidden');
         $('.report').removeClass('selected');
         $(this).toggleClass('selected');
+        $(this).find('.date, .conditions-large, .conditions-small, .data, .day').toggleClass('hidden');
     });
 };
 
 // create ForecastView View
 function ForecastView () {
     View.apply(this, arguments);
+}
+
+function insertImage (main) {
+    if (main === 'Clear') {
+        return 'images/clear.svg';
+    } else if (main === 'Clouds') {
+        return 'images/cloudy.svg';
+    } else {
+        return 'images/rain.svg';
+    }
 }
 
 //daily functions and prototype
@@ -76,8 +89,10 @@ ForecastView.prototype.render = function () {
         d = new Date(dt * 1000),
         dayN = d.getDay(),
         currentDay = daysOfWeek[dayN],
-        date = d.getDate();
+        date = d.getDate(),
+        conditions = main;
 
+    main = insertImage(main);
 
     min = convertTemp(min);
     max = convertTemp(max);
@@ -88,14 +103,14 @@ ForecastView.prototype.render = function () {
                     <h2>${date}</h2>
                 </div>
                 <div class="conditions-small hidden">
-                    <img class="" src="">
-                    <h4 class="">COND</h4>
+                    <img src="${main}">
+                    <h4>${conditions}</h4>
                 </div>
             </div>
             <div class="right">
                 <div class="conditions-large">
-                    <img src="">
-                    <h3>CONDITIONS</h3>
+                    <img src="${main}">
+                    <h3>${conditions}</h3>
                 </div>
                 <div class="day hidden">
                     <h2>${currentDay}</h2>
