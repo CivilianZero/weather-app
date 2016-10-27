@@ -1,6 +1,6 @@
 @font-face {
 	font-family: 'Raleway';
-	src: url(../../fonts/Raleway/Raleway-Thin.ttf);
+	src: url(./fonts/Raleway/Raleway-Thin.ttf);
 }
 
 html {
@@ -10,6 +10,7 @@ html {
 body {
 	background-color: #555;
 	font-family: 'Raleway';
+	text-transform: uppercase;
 
 }
 
@@ -144,11 +145,11 @@ body {
 
 }
 
-@media (min-width: 500px) {
+@media (min-width: 501px) {
 	header {
 		text-align: left;
 		color: #fff;
-		margin-left: 1em;
+		margin-left: 2.5em;
 
 	}
 
@@ -178,9 +179,9 @@ body {
 
 	.report {
 		display: flex;
+		flex-direction: column;
 		flex-grow: 1;
-		justify-content: space-around;
-		margin: .5em 1.5em .5em 1.5em;
+		margin: .5em .5em .5em .5em;
 		opacity: .8;
 	}
 
@@ -189,16 +190,37 @@ body {
 	}
 
 	.right {
+		display: flex;
+		flex-direction: column;
 		background-color: #fff;
 		padding: .5em;
 	}
 
 	.day {
 		order: -1;
+		text-align: center;
+		line-height: 0;
+		font-size: 2em;
 	}
 
+	.conditions-large {
+		display: flex;
+		flex-direction: column;
+		align-content: space-around;
+		flex-grow: 2;
+	}
 
+	.conditions-large h3 {
+		
+		font-size: 1.5em;
+		text-align: center;
+		margin: 0;
+	}
 
+	.data {
+		align-self: center;
+		line-height: 1em;	
+	}
 
 	.hidden {
 		display: none;
